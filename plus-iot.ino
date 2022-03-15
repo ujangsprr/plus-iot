@@ -213,7 +213,7 @@ void setup()
   delay(200);
   digitalWrite(LED_BLUE, LOW);
 
-  delay(5000);
+  delay(2000);
 }
 
 void loop()
@@ -251,10 +251,12 @@ void loop()
       buttonState = reading;
       if (buttonState == LOW) {
         lcd.clear();
-        lcd.setCursor(0, 0); lcd.print("RESTARTING ...");
-        Serial.println("restart");
+        lcd.setCursor(0, 0); lcd.print("RESTARTING");
         digitalWrite(LED_BLUE, LOW);
-        delay(1000);
+        for(int i=0; i<3; i++){
+          delay(1000);
+          lcd.print(" .");
+        }
         wm.resetSettings();
         ESP.restart();
       }
